@@ -5,140 +5,117 @@
 <title>Chameleon</title>
 
 <style>
-/* ---------- Theme Colors ---------- */
+/* ---------- KID-FRIENDLY PRIMARY COLORS ---------- */
 :root {
-  --bg1: #6a11cb;
-  --bg2: #2575fc;
-  --card-bg: rgba(255, 255, 255, 0.22);
-  --card-border: rgba(255, 255, 255, 0.35);
-  --accent: #ffca28;
-  --accent2: #ff7043;
-  --text-light: #ffffffdd;
-  --text-strong: #ffffff;
-  --radius: 16px;
-  --shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  --blue:   #4A90E2;
+  --red:    #D0021B;
+  --yellow: #F5A623;
+  --green:  #7ED321;
+  --bg:     #F2F2F2;
+  --white:  #ffffff;
+  --radius: 18px;
 }
 
-/* ---------- Global Styles ---------- */
+/* ---------- GLOBAL STYLES ---------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Comic Neue", "Comic Sans MS", Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
-  font-family: "Inter", system-ui, sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  background: var(--bg);
   min-height: 100vh;
   padding: 20px;
   display: flex;
   justify-content: center;
   text-align: center;
-  color: var(--text-light);
-  animation: fadeIn 0.5s ease;
-}
-
-/* Fade animation for screen transitions */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .screen {
   display: none;
   width: 100%;
-  max-width: 420px;
-  animation: fadeIn 0.4s ease;
+  max-width: 450px;
 }
 .show {
   display: block;
 }
 
-/* ---------- Card UI ---------- */
-.card {
-  backdrop-filter: blur(16px);
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
-  border-radius: var(--radius);
-  padding: 24px;
+h1 {
+  font-size: 40px;
+  color: var(--blue);
+  font-weight: 900;
   margin-bottom: 20px;
-  text-align: left;
 }
 
-/* ---------- Controls ---------- */
+/* ---------- CARDS ---------- */
+.card {
+  background: var(--white);
+  padding: 22px;
+  border-radius: var(--radius);
+  border: 4px solid var(--blue);
+  margin-bottom: 20px;
+}
+
+/* ---------- INPUTS ---------- */
 label {
-  font-size: 14px;
-  color: var(--text-light);
-  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
   display: block;
+  color: var(--red);
 }
 
 select, input {
   width: 100%;
   padding: 14px;
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: var(--radius);
-  border: none;
-  background: rgba(255, 255, 255, 0.85);
-  color: #333;
+  border: 3px solid var(--green);
+  background: #ffffff;
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- BUTTONS ---------- */
 button {
   width: 100%;
   padding: 16px;
-  margin-top: 10px;
   border-radius: var(--radius);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: bold;
   border: none;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #4a2c00;
-  box-shadow: var(--shadow);
-  transition: transform 0.1s ease, box-shadow 0.15s ease;
+  margin-top: 12px;
+  color: white;
 }
 
 button:active {
   transform: scale(0.97);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
 }
 
-/* ---------- Secret Word Card ---------- */
+.btn-blue { background: var(--blue); }
+.btn-red { background: var(--red); }
+.btn-green { background: var(--green); }
+.btn-yellow { background: var(--yellow); }
+
+/* ---------- SECRET WORD CARD ---------- */
 .secret-card {
-  backdrop-filter: blur(18px);
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid var(--card-border);
+  background: var(--white);
+  border: 4px solid var(--yellow);
   border-radius: var(--radius);
-  padding: 50px 20px;
-  font-size: 42px;
-  font-weight: 700;
-  color: var(--accent);
-  box-shadow: var(--shadow);
-  animation: popIn 0.5s ease;
-}
-
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.subtitle {
-  margin-top: 8px;
-  margin-bottom: 24px;
-  color: var(--text-light);
-}
-
-h1 {
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--text-strong);
+  padding: 40px 20px;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--red);
   margin-bottom: 20px;
 }
-
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--blue);
+}
 </style>
 </head>
 
@@ -161,37 +138,37 @@ h1 {
     <input id="players" type="number" min="2" max="20" value="4">
   </div>
 
-  <button onclick="startGame()">Start Game</button>
+  <button class="btn-green" onclick="startGame()">Start Game</button>
 </div>
 
 <!-- ---------- PLAYER PROMPT ---------- -->
 <div id="playerPrompt" class="screen">
   <h1 id="playerNumber"></h1>
-  <p class="subtitle">Pass the phone. Tap to reveal your role.</p>
-  <button onclick="reveal()">Reveal</button>
+  <p class="subtitle">Pass the phone. Tap to reveal your word!</p>
+  <button class="btn-blue" onclick="reveal()">Reveal</button>
 </div>
 
 <!-- ---------- WORD REVEAL ---------- -->
 <div id="revealScreen" class="screen">
   <h1 id="revealTitle"></h1>
   <div class="secret-card" id="secretWord"></div>
-  <button onclick="nextPlayer()">Next Player</button>
+  <button class="btn-yellow" onclick="nextPlayer()">Next Player</button>
 </div>
 
 <!-- ---------- END SCREEN ---------- -->
 <div id="endScreen" class="screen">
-  <h1>All Players Ready</h1>
-  <p class="subtitle">Begin the discussion round.</p>
-  <button onclick="location.reload()">Play Again</button>
+  <h1>Ready to Play!</h1>
+  <p class="subtitle">Everyone has seen their word.</p>
+  <button class="btn-red" onclick="location.reload()">Play Again</button>
 </div>
 
 <script>
-/* ---------- Word Bank ---------- */
+/* ---------- WORD BANK ---------- */
 const WORDS = {
-  "Animals": ["Tiger", "Panda", "Shark", "Falcon", "Lizard", "Dolphin"],
-  "Food": ["Pizza", "Sushi", "Tacos", "Ramen", "Pasta", "Curry"],
-  "Movies": ["Inception", "Avatar", "Jaws", "Shrek", "Frozen", "Titanic"],
-  "Countries": ["Japan", "Canada", "Brazil", "Egypt", "France", "India"]
+  "Animals": ["Tiger", "Frog", "Shark", "Horse", "Bunny", "Penguin"],
+  "Food": ["Pizza", "Cake", "Hotdog", "Burger", "Pasta", "Sushi"],
+  "Movies": ["Frozen", "Cars", "Moana", "Jaws", "Shrek", "Up"],
+  "Countries": ["Japan", "Spain", "Egypt", "India", "USA", "France"]
 };
 
 let playerCount = 0;
@@ -199,13 +176,13 @@ let currentPlayer = 1;
 let chameleon = 1;
 let secretWord = "";
 
-/* ---------- Utility ---------- */
+/* ---------- SHOW SCREEN ---------- */
 function show(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("show"));
   document.getElementById(id).classList.add("show");
 }
 
-/* ---------- Game Flow ---------- */
+/* ---------- GAME LOGIC ---------- */
 function startGame() {
   const cat = document.getElementById("category").value;
   playerCount = parseInt(document.getElementById("players").value);
@@ -218,22 +195,23 @@ function startGame() {
 }
 
 function playerTurn() {
-  if (currentPlayer > playerCount) return show("endScreen");
-
-  document.getElementById("playerNumber")
-    .textContent = `Player ${currentPlayer}`;
+  if (currentPlayer > playerCount) {
+    show("endScreen");
+    return;
+  }
+  document.getElementById("playerNumber").textContent =
+    `Player ${currentPlayer}`;
   show("playerPrompt");
 }
 
 function reveal() {
   if (currentPlayer === chameleon) {
-    document.getElementById("revealTitle").textContent = "You are the Chameleon";
+    document.getElementById("revealTitle").textContent = "You Are the Chameleon!";
     document.getElementById("secretWord").textContent = "❓❓❓";
   } else {
-    document.getElementById("revealTitle").textContent = "Your Word Is";
+    document.getElementById("revealTitle").textContent = "Your Word:";
     document.getElementById("secretWord").textContent = secretWord;
   }
-
   show("revealScreen");
 }
 
